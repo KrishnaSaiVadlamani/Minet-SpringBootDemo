@@ -14,9 +14,12 @@
 	<name>MinetDemo</name>
 	<description>Demo project for Spring Boot</description>
 	<properties>
-		<java.version>11</java.version>
+		<java.version>17</java.version>
 		<sonar.organization>krishnasaivadlamani</sonar.organization>
 		<sonar.projectKey>KrishnaSaiVadlamani_Minet-SpringBootDemo</sonar.projectKey>
+		<jacoco.version>0.8.8</jacoco.version>
+		<sonar.java.coveragePlugin>jacoco</sonar.java.coveragePlugin>
+		<sonar.dynamicAnalysis>reuseReports</sonar.dynamicAnalysis>
 		<sonar.host.url>https://sonarcloud.io</sonar.host.url>
 	</properties>
 	<dependencies>
@@ -71,6 +74,13 @@
 			<artifactId>junit</artifactId>
 			<scope>test</scope>
 		</dependency>
+		<!-- https://mvnrepository.com/artifact/org.slf4j/slf4j-api -->
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-api</artifactId>
+			<version>2.0.6</version>
+		</dependency>
+
 	</dependencies>
 
 	<build>
@@ -89,26 +99,30 @@
 				</configuration>
 			</plugin>
 			<plugin>
+				<groupId>org.sonarsource.scanner.maven</groupId>
+				<artifactId>sonar-maven-plugin</artifactId>
+				<version>3.9.0.2155</version>
+			</plugin>
+			<plugin>
 				<groupId>org.jacoco</groupId>
 				<artifactId>jacoco-maven-plugin</artifactId>
-				<version>0.8.5</version>
+				<version>${jacoco.version}</version>
 				<executions>
 					<execution>
-						<id>prepare-agent</id>
+						<id>jacoco-initialize</id>
 						<goals>
 							<goal>prepare-agent</goal>
 						</goals>
 					</execution>
 					<execution>
-						<id>report</id>
-						<phase>prepare-package</phase>
+						<id>jacoco-site</id>
+						<phase>package</phase>
 						<goals>
 							<goal>report</goal>
 						</goals>
 					</execution>
 				</executions>
 			</plugin>
-
 			<!--			-->
 		</plugins>
 	</build>
