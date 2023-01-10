@@ -11,6 +11,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 import java.time.LocalDateTime;
 import java.util.Optional;
+import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -29,7 +30,9 @@ public class TransactionServiceTest {
     public void getTransactions(){
         when(transactionRepository.findAll())
                 .thenReturn(Stream.of(new Transaction())
-                        .toList());
+                        .collect(Collectors.toList()));
+        assertEquals(1, transactionService.findAllTransactions().size());
+
     }
 
     @Test

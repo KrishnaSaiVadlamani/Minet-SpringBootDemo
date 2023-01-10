@@ -8,6 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.stream.Collectors;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -26,7 +28,7 @@ public class UserController {
     @GetMapping("/users")
     public List<UserDto> getUsers() {
         return userService.findAllUsers().stream().map(post -> modelMapper.map(post, UserDto.class))
-                .toList();
+                .collect(Collectors.toList());
     }
 
     @PostMapping("/users")

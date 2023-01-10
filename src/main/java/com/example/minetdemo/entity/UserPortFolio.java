@@ -1,11 +1,10 @@
 package com.example.minetdemo.entity;
 
-import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
 import java.util.List;
-
+import javax.persistence.*;
 @Entity
 @Table(name = "user_portfolio")
 public class UserPortFolio {

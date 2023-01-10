@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 public class TransactionServiceImpl implements TransactionService{
@@ -22,7 +23,7 @@ public class TransactionServiceImpl implements TransactionService{
         return transactionRepository.findAll()
                 .stream()
                 .map(this::convertEntityToDTO)
-                .toList();
+                .collect(Collectors.toList());
     }
 
     @Override

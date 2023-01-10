@@ -10,6 +10,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/")
@@ -25,7 +26,7 @@ public class CryptoController {
     private ModelMapper modelMapper;
     @GetMapping("/crypto")
     public List<CryptoDto> getCryptos() {
-        return cryptoService.findAllCryptos().stream().map(post -> modelMapper.map(post, CryptoDto.class)).toList();
+        return cryptoService.findAllCryptos().stream().map(post -> modelMapper.map(post, CryptoDto.class)).collect(Collectors.toList());
     }
     @GetMapping("/crypto/{id}")
     public Crypto showCryptoById(@PathVariable int id) {

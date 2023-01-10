@@ -10,6 +10,7 @@ import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import java.util.Optional;
+import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -28,7 +29,9 @@ public class UserServiceTest {
     public void getUsers(){
         when(userRepository.findAll())
                 .thenReturn(Stream.of(new User())
-                        .toList());
+                        .collect(Collectors.toList()));
+        assertEquals(1, userService.findAllUsers().size());
+
     }
 
     @Test

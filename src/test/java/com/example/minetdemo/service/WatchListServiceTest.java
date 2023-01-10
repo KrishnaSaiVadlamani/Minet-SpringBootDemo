@@ -27,13 +27,6 @@ public class WatchListServiceTest {
     private WatchListRepository watchListRepository;
 
     @Test
-    public void getWatchLists(){
-        when(watchListRepository.findAll())
-                .thenReturn(Stream.of(new WatchList())
-                        .toList());
-    }
-
-    @Test
     public void testFindById(){
         WatchList watchList = new WatchList(1,1, LocalDateTime.now());
         when(watchListRepository.findById(1)).thenReturn(Optional.of(watchList));

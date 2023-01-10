@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -32,7 +33,7 @@ public class TransactionController {
 
     @GetMapping("/transactions")
     public List<TransactionDto> transactionList(){
-        return transactionService.findAllTransactions().stream().map(post -> modelMapper.map(post, TransactionDto.class)).toList();
+        return transactionService.findAllTransactions().stream().map(post -> modelMapper.map(post, TransactionDto.class)).collect(Collectors.toList());
     }
 
     @PostMapping("/transaction")

@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 public class CryptoServiceImpl implements CryptoService{
@@ -22,7 +23,7 @@ public class CryptoServiceImpl implements CryptoService{
         return cryptoRepository.findAll()
                 .stream()
                 .map(this::convertEntityToDto)
-                .toList();
+                .collect(Collectors.toList());
     }
 
     @Override

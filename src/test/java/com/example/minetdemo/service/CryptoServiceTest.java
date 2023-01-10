@@ -10,6 +10,7 @@ import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import java.util.Optional;
+import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -27,7 +28,8 @@ public class CryptoServiceTest {
     public void getCryptos(){
         when(cryptoRepository.findAll())
                 .thenReturn(Stream.of(new Crypto())
-                .toList());
+                .collect(Collectors.toList()));
+        assertEquals(1, cryptoService.findAllCryptos().size());
     }
 
     @Test

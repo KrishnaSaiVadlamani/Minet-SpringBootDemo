@@ -8,6 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.stream.Collectors;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -32,7 +34,7 @@ public class UserWalletController {
 
     @GetMapping("/wallet")
     public List<UserWalletDto> userWalletDtoList(){
-        return userWalletService.findAllWallets().stream().map(post -> modelMapper.map(post, UserWalletDto.class)).toList();
+        return userWalletService.findAllWallets().stream().map(post -> modelMapper.map(post, UserWalletDto.class)).collect(Collectors.toList());
     }
     @PostMapping("/wallet")
     public void addWallet(@RequestBody UserWallet userWallet){
